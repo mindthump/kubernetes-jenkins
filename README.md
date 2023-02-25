@@ -1,3 +1,13 @@
 # Kubernetes Manifests for Jenkins Deployment
 
-Refer https://devopscube.com/setup-jenkins-on-kubernetes-cluster/ for step by step process to use these manifests.
+These files need to be applied in this order:
+
+1. namespace.yaml
+2. serviceAccount.yaml
+3. deployment.yaml
+
+* Get the initial admin password from the jenkins pod log created by the deployment.
+* Remove unneeded plugins and let the rest install.
+* Install the Kubernetes plugin.
+* Configure the namespace as `devops-tools`
+* Update the JENKINS_TUNNEL to http://<cluster-ip>:50000
