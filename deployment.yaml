@@ -1,17 +1,3 @@
-# Persistent Volume Claim
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: jenkins-pv-claim
-  namespace: devops-tools
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 50Gi
-
-# Deployment Config
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -70,27 +56,3 @@ spec:
         - name: jenkins-data
           persistentVolumeClaim:
               claimName: jenkins-pv-claim
-
-# Service Config
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: jenkins-service
-  namespace: devops-tools
-  annotations:
-      prometheus.io/scrape: 'true'
-      prometheus.io/path:   /
-      prometheus.io/port:   '8080'
-spec:
-  selector: 
-    app: jenkins
-  type: NodePort  
-  ports:
-    - name: httpport
-      port: 8080
-      targetPort: 8080
-      nodePort: 32000
-    - name: jnlpport
-      port: 50000
-      targetPort: 50000
