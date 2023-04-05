@@ -4,7 +4,9 @@ These files need to be applied in this order:
 
 1. namespace.yaml
 2. serviceAccount.yaml
-3. deployment.yaml
+3. pvc.yaml
+4. deployment.yaml
+5. service.yaml
 
 * Get the initial admin password from the jenkins pod log created by the deployment.
 * Remove unneeded plugins and let the rest install.
